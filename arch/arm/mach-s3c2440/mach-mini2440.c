@@ -69,8 +69,11 @@
 
 
 #include <sound/s3c24xx_uda134x.h>
-
+#define pSMDK2410_ETH_IO         __phys_to_pfn(0x19000000)
+#define vSMDK2410_ETH_IO        0xE0000000
+#define SMDK2410_EHT_IRQ        IRQ_EINT9
 static struct map_desc mini2440_iodesc[] __initdata = {
+	{vSMDK2410_ETH_IO, pSMDK2410_ETH_IO, SZ_1M, MT_DEVICE}
 };
 
 #define UCON S3C2410_UCON_DEFAULT | S3C2410_UCON_UCLK

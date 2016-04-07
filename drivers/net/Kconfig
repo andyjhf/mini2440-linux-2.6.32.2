@@ -1438,8 +1438,7 @@ config FORCEDETH_NAPI
 
 config CS89x0
 	tristate "CS89x0 support"
-	depends on NET_ETHERNET && (ISA || EISA || MACH_IXDP2351 \
-		|| ARCH_IXDP2X01 || ARCH_PNX010X || MACH_MX31ADS)
+	depends on ARM || BLACKFIN || MIPS
 	---help---
 	  Support for CS89x0 chipset based Ethernet cards. If you have a
 	  network (Ethernet) card of this type, say Y and read the

@@ -1,7 +1,7 @@
 #
 # Automatically generated make config: don't edit
 # Linux kernel version: 2.6.32.2
-# Wed Apr  6 10:21:16 2016
+# Wed Apr  6 15:01:26 2016
 #
 CONFIG_ARM=y
 CONFIG_SYS_SUPPORTS_APM_EMULATION=y
@@ -642,9 +642,7 @@ CONFIG_NET_ETHERNET=y
 CONFIG_MII=y
 # CONFIG_AX88796 is not set
 # CONFIG_SMC91X is not set
-CONFIG_DM9000=y
-CONFIG_DM9000_DEBUGLEVEL=4
-# CONFIG_DM9000_FORCE_SIMPLE_PHY_POLL is not set
+# CONFIG_DM9000 is not set
 # CONFIG_ETHOC is not set
 # CONFIG_SMC911X is not set
 # CONFIG_SMSC911X is not set
@@ -657,6 +655,7 @@ CONFIG_DM9000_DEBUGLEVEL=4
 # CONFIG_IBM_NEW_EMAC_MAL_CLR_ICINTSTAT is not set
 # CONFIG_IBM_NEW_EMAC_MAL_COMMON_ERR is not set
 # CONFIG_B44 is not set
+CONFIG_CS89x0=y
 # CONFIG_KS8842 is not set
 # CONFIG_KS8851_MLL is not set
 # CONFIG_NETDEV_1000 is not set
