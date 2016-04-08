@@ -106,7 +106,22 @@ scripts/mod/mk_elfconfig
 scripts/mod/modpost
 scripts/pnmtologo
 uImage
-# stgit generated dirs
+
+firmware/edgeport/boot.fw
+firmware/edgeport/boot2.fw
+firmware/edgeport/down.fw
+firmware/edgeport/down2.fw
+firmware/ihex2fw
+firmware/keyspan_pda/keyspan_pda.fw
+firmware/keyspan_pda/xircom_pgs.fw
+firmware/mts_cdma.fw
+firmware/mts_edge.fw
+firmware/mts_gsm.fw
+firmware/ti_3410.fw
+firmware/ti_5052.fw
+firmware/whiteheat.fw
+firmware/whiteheat_loader.fw
+
 patches-*
 
 # quilt's files

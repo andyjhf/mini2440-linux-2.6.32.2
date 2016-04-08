@@ -42,6 +42,8 @@
 #include <linux/mtd/partitions.h>
 #include <linux/dm9000.h>
 #include <linux/mmc/host.h>
+#include <linux/i2c.h>
+#include <linux/i2c/at24.h>
 
 #include <asm/mach/arch.h>
 #include <asm/mach/map.h>
@@ -495,6 +497,21 @@ static struct s3c24xx_mci_pdata mini2440_mmc_cfg = {
    .ocr_avail     = MMC_VDD_32_33|MMC_VDD_33_34,
 };
 
+/*
+ *   I2C devices
+ */
+static struct at24_platform_data at24c08 = {
+	.byte_len = SZ_8K / 8,
+	.page_size = 16,
+};
+
+static struct i2c_board_info mini2440_i2c_devs[] __initdata = {
+	{
+		I2C_BOARD_INFO("24c08",0x50),
+		.platform_data = &at24c08,
+	},
+};
+
 
 /* devices we initialise */
 
@@ -527,7 +544,7 @@ static void __init mini2440_machine_init(void)
 	s3c_i2c0_set_platdata(NULL);
 
 	s3c2410_gpio_cfgpin(S3C2410_GPC(0), S3C2410_GPC0_LEND);
-
+	i2c_register_board_info(0, mini2440_i2c_devs,ARRAY_SIZE(mini2440_i2c_devs));
 	s3c_device_nand.dev.platform_data = &friendly_arm_nand_info;
 	s3c_device_sdi.dev.platform_data = &mini2440_mmc_cfg;
 	platform_add_devices(mini2440_devices, ARRAY_SIZE(mini2440_devices));
