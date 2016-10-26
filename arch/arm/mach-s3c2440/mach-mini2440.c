@@ -44,6 +44,8 @@
 #include <linux/mmc/host.h>
 #include <linux/i2c.h>
 #include <linux/i2c/at24.h>
+#include <linux/gpio_keys.h>
+#include <linux/input.h>
 
 #include <asm/mach/arch.h>
 #include <asm/mach/map.h>
@@ -449,6 +451,61 @@ static struct s3c2410_platform_nand friendly_arm_nand_info = {
 	.ignore_unset_ecc = 1,
 };
 
+/*gpio key*/
+ static struct gpio_keys_button mini2440_buttons[] = {
+{
+	.gpio                   = S3C2410_GPF(0),          /*K1 */
+	.code                  = KEY_4,
+	.desc                  = "KEY 4",
+	.active_low      = 1,
+	.type				= EV_KEY,
+	.debounce_interval	=100,
+},
+
+{
+	.gpio                   = S3C2410_GPF(2),          /*K2 */
+	.code                  = KEY_3,
+	.desc                  = "KEY 3",
+	.active_low      = 1,
+	.type				= EV_KEY,
+	.debounce_interval	=100,
+},
+
+{
+	.gpio                   = S3C2410_GPG(3),          /*K3 */
+	.code                  = KEY_2,
+	.desc                  = "KEY 2",
+	.active_low      = 1,
+	.type				= EV_KEY,
+	.debounce_interval	=100,
+},
+
+{
+	.gpio                   = S3C2410_GPG(11),          /*K4 */
+	.code                  = KEY_1,
+	.desc                  = "KEY 1",
+	.active_low      = 1,
+	.type				= EV_KEY,
+	.debounce_interval	=100,
+},
+
+};
+
+static struct gpio_keys_platform_data mini2440_button_data = {
+	.buttons   = mini2440_buttons,
+	.nbuttons	= ARRAY_SIZE(mini2440_buttons),
+
+};
+
+static struct platform_device mini2440_button_device = {
+	.name	="gpio-keys",
+	.id		=-1,
+	.dev	 ={
+		   .platform_data         = &mini2440_button_data,
+	}
+};
+
+
 /* DM9000AEP 10/100 ethernet controller */
 #define MACH_MINI2440_DM9K_BASE (S3C2410_CS4 + 0x300)
 
@@ -522,6 +579,7 @@ static struct platform_device *mini2440_devices[] __initdata = {
 	&s3c_device_wdt,
 	&s3c_device_i2c0,
 	&s3c_device_iis,
+	&mini2440_button_device,
 	&mini2440_device_eth,
 	&s3c24xx_uda134x,
 	&s3c_device_nand,
